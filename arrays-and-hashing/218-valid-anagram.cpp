@@ -21,6 +21,8 @@ unordered_map<char, int> mapString(string s) {
 }
 
 bool isAnagram(string s, string t) {
+    if (s.length() != t.length()) {return false;}
+
     unordered_map<char, int> sMap = mapString(s);
     unordered_map<char, int> tMap = mapString(t);
     if (sMap.size() != tMap.size()) {
