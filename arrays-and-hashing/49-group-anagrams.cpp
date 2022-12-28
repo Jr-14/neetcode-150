@@ -13,12 +13,37 @@ Constraints:
 
 using namespace std;
 
+string stringSort(string s) {
+    int counter[26] = {0};
+    for (char c : s) {
+        counter[c - 'a']++;
+    }
+    string t;
+    for (int c = 0; c < 26; c++) {
+        t += string(counter[c], c + 'a');
+    }
+    return t;
+}
+
 map<char, int> mapString(string s) {
     map<char, int> m;
     for (char& c : s) {
         m[c]++;
     }
     return m;
+}
+
+vector<vector<string>> groupAnagramsUsingStringSort(vector<string>& strs) {
+    unordered_map<string, vector<string>> m;
+    for (string s : strs) {
+        m[stringSort(s)].push_back(s);
+    }
+
+    vector<vector<string>> anagrams;
+    for (auto p : m) {
+        anagrams.push_back(p.second);
+    }
+    return anagrams;
 }
 
 vector<vector<string>> groupAnagrams(vector<string>& strs) {
