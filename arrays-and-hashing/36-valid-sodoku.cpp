@@ -18,63 +18,23 @@ Constraints:
 
 #include <vector>
 #include <iostream>
-#include <algorithm>
-#include <iterator>
 
 using namespace std;
 
 bool isValidSodoku(vector<vector<char>>& board) {
-    int numberArray[9] = {0};
-    int colNumberArray[9][9] = {0};
-    int sectionNumberArray[3][9] = {0};
-    // Iterate through all rows and check whether the configuration is valid
-    for (int i = 0; i < 9; i++) {
-        vector<char> row = board[i];
-        // Check the section arrays
-        if (i != 0 && i % 3 == 0) {
-            for (int j = 0; j < 3; j++) {
-                // cout << "Counting Sections: " << j << endl;
-                for (int k = 0; k < 9; k++) {
-                    int count = sectionNumberArray[j][k];
-                    // cout << "Number: " << k << ", Count: " << count << endl;
-                    if (count > 1) return false;
-                }
+    int cols[9][9] = { 0 };
+    int rows[9][9] = { 0 };
+    int squares[9][9] = { 0 };
+
+    for (int r = 0; r < 9; r++) {
+        for (int c = 0; c < 9; c++) {
+            if (board[r][c] != '.') {
+                int num = board[r][c] - '0' - 1;
+                int k = r / 3 * 3 + c / 3;
+                if (cols[c][num] || rows[r][num] || squares[k][num]) 
+                    return false;
+                cols[c][num] = rows[r][num] = squares[k][num] = 1;
             }
-            // Clear the array and set to all 0
-            memset(sectionNumberArray, 0, sizeof sectionNumberArray);
-        }
-        // Increment number array count
-        for (int j = 0; j < 9; j++) {
-            int columnSectionNumber = j / 3;
-            char c = row[j];
-            if (c != '.') {
-                int num = c - '0';
-                // cout << num << endl;
-                numberArray[num]++;
-                colNumberArray[j][num]++;
-                sectionNumberArray[columnSectionNumber][num]++;
-            }
-        }
-        // Check number array count for any values that are greater than 1
-        for (int j = 0; j < 9; j++) {
-            int count = numberArray[j];
-            if (count > 1) return false;
-        }
-        // Reset the number array to contain all zeros
-        memset(numberArray, 0, sizeof(numberArray[0]) * 9);
-    }
-    // Check whether columns are valid configurations
-    for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-            int count = colNumberArray[i][j];
-            if (count > 1) return false;
-        }
-    }
-    // Check the very last section array
-    for (int j = 0; j < 3; j++) {
-        for (int k = 0; k < 9; k++) {
-            int count = sectionNumberArray[j][k];
-            if (count > 1) return false;
         }
     }
     return true;
