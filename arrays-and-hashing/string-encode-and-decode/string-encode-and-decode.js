@@ -56,32 +56,26 @@ function encode(strs) {
  */
 function decode(str) {
     const output = [];
-    let stringLengthToRead = '';
-    for (let i = 0; i < str.length; i++) {
-        console.log(i);
-        const currentChar = str[i];
-        const prevChar = str[i - 1];
-        if (isInteger(currentChar)) {
-            stringLengthToRead = `${stringLengthToRead}${currentChar}`;
-        } else if (isInteger(prevChar) && currentChar === '#') {
-            const readString = str.slice(i + 1, i + 1 + parseInt(stringLengthToRead));
-            console.log(readString);
-            output.push(readString);
-            i += parseInt(stringLengthToRead);
-            stringLengthToRead = 0;
+    let i = 0;
+    while (i < str.length) {
+        let j = i;
+        while (str[j] !== '#') {
+            j += 1
         }
+        const length = parseInt(str.slice(i, j));
+        i = j + 1;
+        j = i + length;
+        output.push(str.slice(i, j));
+        i = j;
     }
     return output;
 }
 
 function main() {
     const input = ["neet","code","love","you"];
-    const output = encode(input);
+    const output = decode(encode(input));
     console.log(output);
-    const inputBack = decode(output);
-    console.log(inputBack);
 
-    console.log(isInteger('a'));
 }
 
 main();
