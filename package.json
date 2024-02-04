@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/Jr-14/neetcode-150/issues"
   },
-  "homepage": "https://github.com/Jr-14/neetcode-150#readme"
+  "homepage": "https://github.com/Jr-14/neetcode-150#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
 }
