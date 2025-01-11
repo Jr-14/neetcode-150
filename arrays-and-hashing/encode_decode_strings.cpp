@@ -16,7 +16,6 @@ void Speed() {
 string encode(vector<string> &strs) {
     string res;
     for (const string &s : strs) {
-        // cout << s << ": " << s.size() << endl;
         res += to_string(s.size()) + "#" + s;
         cout << res << endl;
     }
@@ -44,7 +43,6 @@ vector<string> decode(string s) {
 }
 
 void solve() {
-    // vector<string> s = {"hello", "world", "my", "name", "is", "john"};
     vector<string> s = {"we","say",":","yes","!@#$%^&*()"};
     vector<string> output = decode(encode(s));
     for (auto s : output) {
