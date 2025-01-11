@@ -1,3 +1,6 @@
+// Only include if available
+// #include <bits/stdc++.h>
+
 #include <ios>
 #include <iostream>
 #include <string>
@@ -18,9 +21,9 @@ using namespace std;
  * Speed up cin and cout
  */
 void Speed() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-  cout.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 }
 
 void solve() {
@@ -29,11 +32,11 @@ void solve() {
 
 
 int main() {
-  Speed();
-  int t = 1;
-  cin >> t;
-  while (t--) {
-    solve();
-  }
-  return 0;
+    Speed();
+    int t = 1;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }
