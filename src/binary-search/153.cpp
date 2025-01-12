@@ -18,22 +18,17 @@ int findMin(vector<int> &nums) {
     int lower = 0, upper = nums.size() - 1;
     while (lower < upper) {
         int mid = (lower + upper)/2;
-        // It's been rotated
-        if (nums[lower] > nums[upper]) {
-            if (nums[mid] < nums[lower]) {
-                upper = mid;
-            } else {
-                lower = mid + 1;
-            }
-        } else {
+        if (nums[mid] <= nums[upper]) {
             upper = mid;
+        } else {
+            lower = mid + 1;
         }
     }
     return nums[lower];
 }
 
 void solve() {
-    vector<int> v = {4,5,6,7,0,1,2};
+    vector<int> v = {5,6,7,0,1,2,4};
     cout << findMin(v) << endl;
 }
 
