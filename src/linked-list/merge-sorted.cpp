@@ -25,8 +25,33 @@ void solve() {
 
 }
 
+/**
+ * Time Complexity O(n)
+ * Space Complexity O(1)
+ */
 ListNode* mergedTwoLists(ListNode* listOne, ListNode* listTwo) {
+    ListNode dummy(0);
 
+    ListNode* start = &dummy;
+
+    while (listOne && listTwo) {
+        if (listOne->val < listTwo->val) {
+            start->next = listOne;
+            listOne = listOne->next;
+        } else {
+            start->next = listTwo;
+            listTwo = listTwo->next;
+        }
+        start = start->next;
+    }
+
+    if (listOne) {
+        start->next = listOne;
+    } else {
+        start->next = listTwo;
+    }
+
+    return dummy.next;
 }
 
 
