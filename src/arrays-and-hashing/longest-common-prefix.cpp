@@ -33,8 +33,8 @@ string longestCommonPrefix(vector<string> &strs) {
     for (int i = 1; i < strs.size(); i++) {
         string s = strs[i];
         string newlcp = "";
-        for (int j = 0; j < s.size(); j++) {
-            if (j == lcp.size()) {
+        for (int j = 0; j < s.length(); j++) {
+            if (j == lcp.length()) {
                 break;
             }
             if (s[j] == lcp[j]) {
