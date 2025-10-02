@@ -28,7 +28,6 @@ vector<int> getConcatenation(vector<int> &nums) {
     return ans;
 }
 
-
 int main() {
     Speed();
     int t = 1;
